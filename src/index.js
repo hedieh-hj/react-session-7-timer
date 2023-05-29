@@ -1,21 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-// const elem = (
-//   <div>
-//     <h1>time is :</h1>
-//     <h2>it is {new Date().toLocaleTimeString()}</h2>
-//   </div>
-// );
+//component : class
+//baray use featurehay react bayd component class ke misazim az react ers bari kond
+class App extends React.Component {
+  render() {
+    //hatman bayd chizi render konim
+    return (
+      <div>
+        <h1>Timer Project Test - session 8</h1>
+        <Timer />
+        {/* <h2>it is {new Date().toLocaleTimeString()}</h2> */}
+        {/* mishe chandta component dasht */}
+      </div>
+    );
+  }
+}
 
+class Timer extends React.Component {
+  render() {
+    return <h2>Timer: {new Date().toLocaleTimeString()}</h2>;
+  }
+}
+
+//var elem = new App(); // = <App/> khodesh yek new misaze va render() call mikone
 const timer = () => {
-  const elem = (
-    <div>
-      <h1>time is :</h1>
-      <h2>it is {new Date().toLocaleTimeString()}</h2>
-    </div>
-  );
-  ReactDOM.render(elem, document.getElementById("root"));
+  ReactDOM.render(<App />, document.getElementById("root")); //elem.render() == <App/>
 };
 
 setInterval(() => {
