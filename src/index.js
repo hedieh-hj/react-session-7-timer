@@ -1,33 +1,51 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-//component : class
-//baray use featurehay react bayd component class ke misazim az react ers bari kond
+import "./style.css"; //second way add style ---> 1. dar html niaz nist  2.mostaghim use mishe
+
 class App extends React.Component {
   render() {
-    //hatman bayd chizi render konim
     return (
-      <div>
-        <h1>Timer Project Test - session 8</h1>
+      <div className="main">
+        <Hello />
         <Timer />
-        {/* <h2>it is {new Date().toLocaleTimeString()}</h2> */}
-        {/* mishe chandta component dasht */}
       </div>
     );
   }
 }
 
-class Timer extends React.Component {
+class Hello extends React.Component {
   render() {
-    return <h2>Timer: {new Date().toLocaleTimeString()}</h2>;
+    return <h1>Timer Project Test - session 9</h1>;
   }
 }
 
-//var elem = new App(); // = <App/> khodesh yek new misaze va render() call mikone
-const timer = () => {
-  ReactDOM.render(<App />, document.getElementById("root")); //elem.render() == <App/>
-};
+class Timer extends React.Component {
+  constructor() {
+    super(); //constructor parent = react.componentn
+    this.state = {
+      time: new Date().toLocaleDateString,
+    };
+  }
 
-setInterval(() => {
-  timer();
-}, 1000);
+  render() {
+    setInterval(() => {
+      this.setState({
+        time: new Date().toLocaleTimeString(),
+      });
+    }, 1000);
+    // return <h3 className="timer">Time: {new Date().toLocaleTimeString()}</h3>;
+    return <h3 className="timer">Time: {this.state.time}</h3>;
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("root")); //elem.render() == <App/>
+
+//1.way : call render is not true  /2.or refresh page  3.if print state for every changes render method call by it self
+// const timer = () => {
+//   ReactDOM.render(<App />, document.getElementById("root")); //elem.render() == <App/>
+// };
+
+// setInterval(() => {
+//   timer();
+// }, 1000);
