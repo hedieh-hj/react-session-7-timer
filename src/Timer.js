@@ -3,12 +3,13 @@ import ReactDOM from "react-dom";
 import "./style.css";
 
 var interval;
+
 class Timer extends React.Component {
   constructor() {
     console.log("constructor");
     super(); //constructor parent = react.componentn
     this.state = {
-      time: new Date().toLocaleDateString(),
+      number: 10,
     };
   }
 
@@ -17,7 +18,7 @@ class Timer extends React.Component {
     console.log("didmount");
     interval = setInterval(() => {
       this.setState({
-        time: new Date().toLocaleTimeString(),
+        number: this.state.number - 1,
       });
     }, 1000);
   }
@@ -26,7 +27,7 @@ class Timer extends React.Component {
     // mesl render bad har bar taghir --> render . didupdate
     // check conditions
     console.log("did update");
-    if (this.state.time == "2:02:50 PM") {
+    if (this.state.number == 0) {
       clearInterval(interval);
     }
   }
@@ -37,7 +38,7 @@ class Timer extends React.Component {
 
   render() {
     console.log("render");
-    return <h3 className="timer">Time: {this.state.time}</h3>;
+    return <h3 className="timer">Time: {this.state.number}</h3>;
   }
 }
 
